@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Home</h1>
+
+
+<h2>Profile infos</h2>
+<p>Your name is : <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></p>
+
+<h2>Performances list</h2>
+<ul>
+  <% @performances.each do |performance| %>
+    <li> <%= performance.title %> </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Create a new performance", new_profile_performance_path(current_user.profile.id), class:"btn btn-primary" %>
