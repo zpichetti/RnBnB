@@ -1,19 +1,19 @@
 class PerformancesController < ApplicationController
+  before_action :find_profile, only: [ :new, :create ]
+  
   def show
-    @performance = Perfomance.find(params[:profile_id])
   end
   
   def new
     @performance = Performance.new
-    @profile = Profile.find(params[:profile_id])
   end
   
   def create
     @performance = Performance.new(performance_params)
-    @profile = Profile.find(params[:profile_id])
     @performance.profile = @profile
+    @performance.performance_date = PerformanceDate.last
     @performance.save
-    redirect_to profile_path(@profile)
+    redirect_to root_path
   end
   
   def edit
@@ -26,5 +26,9 @@ class PerformancesController < ApplicationController
 
   def performance_params
     params.require(:performance).permit(:title, :description, :image_url, :category_id, :performance_date_id, :profile_id, :start_date, :end_date)
+  end
+
+  def find_profile
+    @profile = Profile.find(params[:profile_id])
   end
 end
