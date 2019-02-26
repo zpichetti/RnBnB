@@ -1,0 +1,8 @@
+<h1>Create a new performance</h1>
+
+<%= simple_form_for [@profile, @performance] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :image_url %>
+  <%= f.submit "add a performance", class: "btn btn-primary" %>
+<% end %>
