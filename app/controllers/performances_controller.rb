@@ -2,13 +2,16 @@ class PerformancesController < ApplicationController
   before_action :find_profile, only: [ :new, :create]
   
   def show
+    @performance = Performance.find(params[:id])
   end
   
   def new
     @performance = Performance.new
+    @performance_date = PerformanceDate.new
   end
   
   def create
+    raise
     @performance = Performance.new(performance_params)
     @performance.profile = @profile
     @performance.performance_date = PerformanceDate.last

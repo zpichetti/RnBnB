@@ -7,7 +7,7 @@
 <ul>
   <% @performances.each do |performance| %>
     <li> 
-      <%= performance.title %> 
+      <%= link_to "#{performance.title}", performance_path(performance.id) %>
       <%= link_to edit_performance_path(performance.id) do %>
         <i class="far fa-edit"></i> 
       <% end %>
