@@ -1,3 +1,23 @@
-<h1>Home</h1>
+<div class="banner-home" style = "background-image: url(<%= image_path("home.jpg") %>)"></div>
+<div class="container">
+  <div class="row">
+    <% @performances.each do |performance| %>
+      <div class="cards col-sm-4 col-xs-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-content-tag">R'n'B</div>
+            <div class="card-content-title">DJ jean</div>
+          </div>
+          <div class="card-footer">
+            <div class="card-footer-avatar"></div>
+            <div class="card-footer-name">Jean</div>
+            <div class="card-footer-city">Dunkerque</div>
+            <div class="card-footer-price">5€</div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to "Accès à la profile#show", profile_path(current_user.profile.id), class:"btn btn-primary" %>
