@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :profiles, only: %i[show new create update] do
-    resources :performances, only: %i[show new create] do
+    resources :performances, only: %i[new create] do
       resources :booking, only: %i[new create]
     end
-    resources :performance_dates, only: %i[new create update destroy] do
+    # resources :performance_dates, only: %i[new create update destroy] do
     end
-  end
     resources :booking, only: %i[update show]
-    resources :performances, only: %i[edit update]
+    resources :performances, only: %i[show edit update] do 
+      resources :performance_dates, only: %i[new create update destroy] 
+    end 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
