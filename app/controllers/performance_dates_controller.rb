@@ -1,0 +1,2 @@
+class PerformanceDatesController < ApplicationController
+end
