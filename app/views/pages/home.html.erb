@@ -1,17 +1,24 @@
-<div class="banner-home" style = "background-image: url(<%= image_path("home.jpg") %>)"></div>
+<div class="banner-home" style = "background-image: url(<%= image_path("home.jpg") %>)">
+  <%# Change text in banner.js %>
+  <h1 id="banner-typed-text">	&nbsp;</h1>
+</div>
 <div class="container">
+  <h1 class="text-center">Choose your experience !</h1>
   <div class="row">
     <% @performances.each do |performance| %>
-      <div class="cards col-sm-4 col-xs-12">
+      <div class="cards col-sm-3 col-xs-12">
         <div class="card">
-          <div class="card-content">
-            <div class="card-content-tag">R'n'B</div>
-            <div class="card-content-title">DJ jean</div>
+          <div class="card-content" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path("background-card.jpg") %>)">
+            <span class="label label-info card-content-tag"><%= performance.category.name %></span>
+            <div class="card-content-title"><%= performance.title %></div>
+            <a href="<%= performance_path(performance) %>" class="card-content-link"></a>
           </div>
           <div class="card-footer">
-            <div class="card-footer-avatar"></div>
-            <div class="card-footer-name">Jean</div>
-            <div class="card-footer-city">Dunkerque</div>
+            <%= image_tag("avatar.png", class:"card-footer-avatar") %> 
+            <div class="card-footer-middle">
+              <h2><%= performance.profile.first_name %></h2>
+              <p><%= performance.profile.address_city %></p>
+            </div>
             <div class="card-footer-price">5€</div>
           </div>
         </div>
@@ -19,5 +26,6 @@
     <% end %>
   </div>
 </div>
-
-<%= link_to "Accès à la profile#show", profile_path(current_user.profile.id), class:"btn btn-primary" %>
+<% if user_signed_in? %>
+  <%= link_to "Accès à la profile#show", profile_path(current_user.profile.id), class:"btn btn-primary" %>
+<% end %>
