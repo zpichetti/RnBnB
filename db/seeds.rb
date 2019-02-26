@@ -19,7 +19,7 @@ User.destroy_all
 Profile.destroy_all
 
 puts 'Creating users & profiles ...'
-user1 = User.new(email: "test1@gmail.com", password: "password")
+user1 = User.new(email: "jcc197959@hotmail.com", password: "password")
 profile1 = Profile.new(first_name: 'JC', 
 last_name: 'Coevoet', 
 address: '102 avenue de Bretagne', 
@@ -27,7 +27,7 @@ address_zipcode: 59_000,
 address_city: "Lille", 
 address_country: "France")
 
-user2 = User.new(email: "test2@gmail.com", password: "password")
+user2 = User.new(email: "zpichetti@gmail.com", password: "password")
 profile2 = Profile.new(first_name: 'Xavier',
 last_name: 'Pichetti',
 address: 'Près de la pizzeria',
@@ -35,7 +35,7 @@ address_zipcode: 59_000,
 address_city: "Lille", 
 address_country: "France")
 
-user3 = User.new(email: "test3@gmail.com", password: "password")
+user3 = User.new(email: "antoinepotdevin@gmail.com", password: "password")
 profile3 = Profile.new(first_name: 'Antoine',
 last_name: "Potdevin",
 address: "A la clope",
