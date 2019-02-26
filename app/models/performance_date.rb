@@ -1,3 +1,3 @@
 class PerformanceDate < ApplicationRecord
-  has_one :performance_date
+  has_many :performance_date
 end

@@ -5,6 +5,6 @@ class Performance < ApplicationRecord
 
   belongs_to :category
   belongs_to :performance_date
-  belongs_to :profile, class_name: "PerformerProfile", foreign_key: "performer_profile_id"
+  belongs_to :profile
   has_many :booking
 end
