@@ -1,0 +1,2 @@
+class PerformanceDate < ApplicationRecord
+end

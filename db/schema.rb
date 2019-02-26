@@ -10,10 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_174354) do
+ActiveRecord::Schema.define(version: 2019_02_26_092826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.bigint "performance_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["performance_id"], name: "index_bookings_on_performance_id"
+    t.index ["profile_id"], name: "index_bookings_on_profile_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "performance_dates", force: :cascade do |t|
+    t.date "start"
+    t.date "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "performances", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "performance_date_id"
+    t.bigint "profile_id"
+    t.string "title"
+    t.text "description"
+    t.string "image_url"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_performances_on_category_id"
+    t.index ["performance_date_id"], name: "index_performances_on_performance_date_id"
+    t.index ["profile_id"], name: "index_performances_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.integer "address_zipcode"
+    t.string "address_city"
+    t.string "address_country"
+    t.string "performer_description"
+    t.bigint "user_id"
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +80,10 @@ ActiveRecord::Schema.define(version: 2019_02_25_174354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "performances"
+  add_foreign_key "bookings", "profiles"
+  add_foreign_key "performances", "categories"
+  add_foreign_key "performances", "performance_dates"
+  add_foreign_key "performances", "profiles"
+  add_foreign_key "profiles", "users"
 end
