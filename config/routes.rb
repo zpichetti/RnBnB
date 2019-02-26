@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :profiles, only: %i[show new create update] do
     resources :performances, only: %i[show new create edit update] do
+      resources :booking, only: %i[new create]
     end
     resources :performance_dates, only: %i[new create update destroy] do
     end
   end
-  resources :booking, only: %i[new create]
+    resources :booking, only: %i[update show]
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
