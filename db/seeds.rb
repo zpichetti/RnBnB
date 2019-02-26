@@ -19,7 +19,7 @@ User.destroy_all
 Profile.destroy_all
 
 puts 'Creating users & profiles ...'
-user1 = User.new(email: "jcc197959@hotmail.com", password: "password")
+user1 = User.new(email: "jcc197959@hotmail.fr", password: "password")
 profile1 = Profile.new(first_name: 'JC', 
 last_name: 'Coevoet', 
 address: '102 avenue de Bretagne', 
@@ -55,5 +55,11 @@ profile1.save!
 profile2.save!
 profile3.save!
 
+puts 'Cleaning performance_date database...'
+PerformanceDate.destroy_all
+puts 'create 1 perf date'
+PerformanceDate.create!()
+
 
 puts 'Finished!'
+
