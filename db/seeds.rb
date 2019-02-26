@@ -60,6 +60,5 @@ PerformanceDate.destroy_all
 puts 'create 1 perf date'
 PerformanceDate.create!()
 
-
 puts 'Finished!'
 

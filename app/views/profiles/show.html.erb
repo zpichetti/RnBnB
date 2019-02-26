@@ -1,0 +1,19 @@
+<h1>Profile#show</h1>
+
+<h2>Profile infos</h2>
+<p>Your name is : <%= @profile.first_name %> <%= @profile.last_name %></p>
+
+<h2>Performances list</h2>
+<ul>
+  <% @performances.each do |performance| %>
+    <li> 
+      <%= performance.title %> 
+      <%= link_to edit_performance_path(performance.id) do %>
+        <i class="far fa-edit"></i> 
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Create a new performance", new_profile_performance_path(@profile.id), class:"btn btn-primary" %>
