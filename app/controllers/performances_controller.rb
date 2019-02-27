@@ -27,8 +27,11 @@ class PerformancesController < ApplicationController
   end
 
   def performances_available?
-    true
-    # @available_performances = Performance.join(:bookings).where(status: "performed")
+    @available_performances = []
+    Performance.all.each do |perf|
+      @available_performances << perf if perf.bookings.any?
+    end
+    @available_performances = @available_performances << Performance.join(:bookings).where(status: "performed")
   end
 
   private

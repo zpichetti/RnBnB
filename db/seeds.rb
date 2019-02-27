@@ -55,10 +55,5 @@ profile1.save!
 profile2.save!
 profile3.save!
 
-puts 'Cleaning performance_date database...'
-PerformanceDate.destroy_all
-puts 'create 1 perf date'
-PerformanceDate.create!()
-
 puts 'Finished!'
 
