@@ -1,9 +1,40 @@
-<h1>Performance#show</h1>
+<div class="banner-performance" style = "background-image: url(<%= image_path("background-card.jpg") %>)">
+</div>
+<div class="container relat">
+  <div class="container abso">
+    <div class="row">
+      <div class="col">
+        <div class="title-image-performance-card">
+            <%= image_tag("perf-image1.jpg") %>
+            <div class="text-left">
+              <h1><%= @performance.title %></h1>
+              <h3>Catégorie : <%= @performance.category.name %></h3>
+              <p><%=  @performance.description %></p>
 
-<ul>
-  <li><strong>Catégorie :</strong> <%= @performance.category.name %></li>
-  <li><strong>Title :</strong>  <%= @performance.title %></li>
-  <li><strong>Description :</strong>  <%= @performance.description %></li>
-  <li><strong>Image_url :</strong>  <%= @performance.image_url %></li>
-  <li><strong>Actif :</strong>  <%= @performance.active %></li>
-</ul>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Desactivate performance</label>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="attributes-perf align-items-center">
+      <div class="description-status-perf">
+      </div>
+    <div>
+      <div class="calendar">
+        <%= month_calendar start_date_param: :my_date do |date| %>
+          <%= date %>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" disabled>Booking !</button>
+        <%= link_to "Bouton booking", new_profile_performance_booking_path(current_user.profile.id, params[:id]), class: "nav-link"  %>
+
+      </div>
+    </div>
+  </div>
+</div>
