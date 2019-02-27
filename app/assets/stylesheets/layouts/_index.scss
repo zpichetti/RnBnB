@@ -3,3 +3,11 @@
 // @import "dashboard";
 // @import "profile";
 // @import "map";
+
+.content {
+  min-height: calc(100vh - 210px);
+  margin-bottom: 30px;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+}

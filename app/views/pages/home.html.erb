@@ -26,6 +26,3 @@
     <% end %>
   </div>
 </div>
-<% if user_signed_in? %>
-  <%= link_to "Accès à la profile#show", profile_path(current_user.profile.id), class:"btn btn-primary" %>
-<% end %>
