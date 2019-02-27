@@ -28,6 +28,10 @@ class PerformancesController < ApplicationController
     redirect_to profile_path(@performance.profile.id)
   end
 
+  # def performances_available?
+  #   @available_performances = Performance.join(:bookings).where(status: "performed")
+  # end
+
   private
 
   def performance_params

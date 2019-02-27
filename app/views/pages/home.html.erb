@@ -6,10 +6,10 @@
   <h1 class="text-center">Choose your experience !</h1>
   <div class="row">
     <% @performances.each do |performance| %>
-      <div class="cards col-sm-3 col-xs-12">
+      <div class="cards col-sm-4 col-xs-12">
         <div class="card">
           <div class="card-content" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= image_path("background-card.jpg") %>)">
-            <span class="label label-info card-content-tag"><%= performance.category.name %></span>
+            <span class="btn btn-warning btn-sm card-content-tag"><%= performance.category.name %></span>
             <div class="card-content-title"><%= performance.title %></div>
             <a href="<%= performance_path(performance) %>" class="card-content-link"></a>
           </div>
