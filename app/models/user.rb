@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile, dependent: :destroy
+
+  # def profile
+  #   super || Profile.create(user: self)
+  # end
 end
