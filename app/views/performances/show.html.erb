@@ -30,12 +30,13 @@
         <%= month_calendar start_date_param: :my_date do |date| %>
           <%= date %>
         <% end %>
-      </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" disabled>Booking !</button>
-        <%= link_to "Bouton booking", new_profile_performance_booking_path(current_user.profile.id, params[:id]), class: "nav-link"  %>
-
-      </div>
+      </div>      
+      <% if  user_signed_in?%>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" disabled>Booking !</button>
+          <%= link_to "Bouton booking", new_profile_performance_booking_path(current_user.profile.id, params[:id]), class: "nav-link"  %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

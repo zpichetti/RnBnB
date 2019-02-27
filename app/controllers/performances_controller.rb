@@ -3,7 +3,11 @@ class PerformancesController < ApplicationController
   
   def show
     @performance = Performance.find(params[:id])
-    @distance = Geocoder::Calculations.distance_between([@performance.profile.latitude, @performance.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude]) 
+    if user_signed_in?
+      @distance = Geocoder::Calculations.distance_between([@performance.profile.latitude, @performance.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude]) 
+    else
+      @distance = 0
+    end
   end
   
   def new
