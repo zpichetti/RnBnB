@@ -11,7 +11,6 @@ class PerformancesController < ApplicationController
   end
   
   def create
-    raise
     @performance = Performance.new(performance_params)
     @performance.profile = @profile
     @performance.performance_date = PerformanceDate.last
