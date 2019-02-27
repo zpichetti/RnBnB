@@ -3,6 +3,7 @@ class PerformancesController < ApplicationController
   
   def show
     @performance = Performance.find(params[:id])
+    @distance = Geocoder::Calculations.distance_between([@performance.profile.latitude, @performance.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude]) 
   end
   
   def new
