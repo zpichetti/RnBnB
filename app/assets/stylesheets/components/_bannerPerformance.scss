@@ -11,12 +11,13 @@
 .title-image-performance-card {
   display: flex;
   height: 360px;
+  padding: 30px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   align-items: center;
   border: 2px solid $darkergold;
   img {
-    margin: 30px;
+    margin-right: 30px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
   }
 }
