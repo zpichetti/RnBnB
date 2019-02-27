@@ -9,15 +9,15 @@
             <div class="text-left">
               <h1><%= @performance.title %></h1>
               <h3>Catégorie : <%= @performance.category.name %></h3>
+              <p><%=  @performance.description %></p>
+
             </div>
         </div>
       </div>
     </div>
-    
+
     <div class="attributes-perf align-items-center">
       <div class="description-status-perf">
-        <div>Description : <%=  @performance.description %></div>
-        <div>Actif : <%= @performance.active %></div>
       </div>
     <div>
       <div class="calendar">
