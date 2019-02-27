@@ -7,13 +7,11 @@ class PerformancesController < ApplicationController
   
   def new
     @performance = Performance.new
-    @performance_date = PerformanceDate.new
   end
   
   def create
     @performance = Performance.new(performance_params)
     @performance.profile = @profile
-    @performance.performance_date = PerformanceDate.last
     @performance.save
     redirect_to profile_path(@profile.id)
   end
@@ -28,9 +26,10 @@ class PerformancesController < ApplicationController
     redirect_to profile_path(@performance.profile.id)
   end
 
-  # def performances_available?
-  #   @available_performances = Performance.join(:bookings).where(status: "performed")
-  # end
+  def performances_available?
+    true
+    # @available_performances = Performance.join(:bookings).where(status: "performed")
+  end
 
   private
 
