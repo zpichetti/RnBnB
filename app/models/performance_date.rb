@@ -1,3 +1,5 @@
 class PerformanceDate < ApplicationRecord
-  has_many :performance_date
+  validates :start, presence: true
+  validates :end, presence: true
+  belongs_to :performance_date
 end
