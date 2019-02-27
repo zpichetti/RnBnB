@@ -10,4 +10,5 @@ class Booking < ApplicationRecord
 
   belongs_to :profile
   belongs_to :performance
+  has_many :performance_dates, throught: :performances 
 end
