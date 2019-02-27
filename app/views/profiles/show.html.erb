@@ -2,13 +2,13 @@
   <h2>Welcome <%= @profile.first_name %> <%= @profile.last_name %></h2>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="catalogue-tab" data-toggle="tab" href="#catalogue" role="tab" aria-controls="catalogue" aria-selected="true">Mon catalogue</a>
+      <a class="nav-link active" id="catalogue-tab" data-toggle="tab" href="#catalogue" role="tab" aria-controls="catalogue" aria-selected="true">Mon catalogue (<%= @nbr_performances %>)</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes preformances à réalisés</a>
+      <a class="nav-link" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes preformances à réalisés(0)</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Mes performances réservés</a>
+      <a class="nav-link" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Mes performances réservés(0)</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
