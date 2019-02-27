@@ -5,11 +5,9 @@ Rails.application.routes.draw do
     resources :performances, only: %i[new create] do
       resources :booking, only: %i[new create]
     end
-    # resources :performance_dates, only: %i[new create update destroy] do
-    end
-    resources :booking, only: %i[update show]
-    resources :performances, only: %i[show edit update] do
-      resources :performance_dates, only: %i[new create update destroy]
-    end 
+  end
+  resources :booking, only: %i[update show]
+  resources :performances, only: %i[show edit update] do
+  end 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
