@@ -1,37 +1,26 @@
-    
-    
-    <nav class="navbar navbar-expand-lg navbar-color nav-height">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    <%= link_to '/' do %>
-    <%= image_tag "logo_lightgold.png", width: 90, height: 90%>
-    <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    </div>
-
-
-  <div class="navbar-collapse collapse w-100"> 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-
+<nav class="navbar navbar-expand-lg navbar-light">
+  <%= link_to '/' do %>
+    <%= image_tag "logo_lightgold.png",class: "navbar-brand" %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-      <% unless user_signed_in? %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="navbar-form form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <ul class="navbar-nav ml-auto">
+      <% unless user_signed_in? && current_user.profile != nil%>
         <li class="nav-item">
           <%= link_to "Inscription", new_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
         </li>
-        <% else %>
-      
-
+      <% else %>
         <li class="nav-item">
           <%= link_to "Ajouter une performance", new_profile_performance_path(current_user.profile.id), class: "nav-link" %>
         </li>
@@ -41,15 +30,13 @@
         </li>
 
         <li class="nav-item dropdown" >
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "navbar-avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Edit profile", "#", class: "dropdown-item" %>
+            <%= link_to "Edit profile", edit_profile_path(current_user.profile), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", method: 'delete' %>
           </div>
         </li>
-        <% end %>
-      </ul>
-    </div>
-    </div>
-  </nav>
-
+      <% end %>
+    </ul>
+  </div>
+</nav>
