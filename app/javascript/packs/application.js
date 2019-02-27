@@ -10,4 +10,7 @@
 console.log('Hello World from Webpacker')
 import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
-tabDashboard();
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
