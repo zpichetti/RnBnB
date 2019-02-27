@@ -26,10 +26,37 @@
 }
 
 .navbar-color { 
-  background-color: #2f3847;
+  background-color: #222832;
 }
 
-.space {
-  display: flex;
-  justify-content: space-between;
+.nav-height {
+  min-height: 80px;
+  height: 80px; 
 }
+
+.form-control:focus {
+  border-color: #fdb631;
+}
+
+.navbar-collapse .btn { 
+  border-radius: 5px;
+}
+
+.navbar-collapse .form-control {
+  border-radius: 5px;
+}
+
+.nav-item .dropdown-menu { 
+  border-radius: 5px;
+  background-color: $darkergrey; 
+  border: none;
+}
+
+.dropdown-item {
+  color: $darkergold;
+}
+
+// .dropdown-item:active{ 
+//   background-color: $darkergold;
+//   color: $darkergrey;
+// }
