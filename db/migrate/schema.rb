@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_104449) do
+ActiveRecord::Schema.define(version: 2019_02_26_162031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,11 @@ ActiveRecord::Schema.define(version: 2019_02_27_104449) do
     t.date "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "performance_id"
-    t.index ["performance_id"], name: "index_performance_dates_on_performance_id"
   end
 
   create_table "performances", force: :cascade do |t|
     t.bigint "category_id"
+    t.bigint "performance_date_id"
     t.bigint "profile_id"
     t.string "title"
     t.text "description"
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_104449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_performances_on_category_id"
+    t.index ["performance_date_id"], name: "index_performances_on_performance_date_id"
     t.index ["profile_id"], name: "index_performances_on_profile_id"
   end
 
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 2019_02_27_104449) do
 
   add_foreign_key "bookings", "performances"
   add_foreign_key "bookings", "profiles"
-  add_foreign_key "performance_dates", "performances"
   add_foreign_key "performances", "categories"
+  add_foreign_key "performances", "performance_dates"
   add_foreign_key "performances", "profiles"
   add_foreign_key "profiles", "users"
 end

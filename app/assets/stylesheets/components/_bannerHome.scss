@@ -1,0 +1,19 @@
+.banner-home{
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.banner-home > h1{
+  position: absolute;
+  top:100px;
+  left: 50px;
+  color: goldenrod;
+  text-shadow: 0 0 10px gold;
+  font-weight: bold;
+  font-size: 40px;
+  text-transform: uppercase;
+}
