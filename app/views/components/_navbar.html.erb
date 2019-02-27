@@ -1,42 +1,45 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path do %>
-  <%= image_tag "logo_lightgold.png", width: 100, height: 100 %>
-  <% end %>
-  <!-- Right Navigation -->
+<div class="space">
 
-  <%# user_signed_in? %>
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <%= link_to "Inscription", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
-    <%= link_to "Connexion", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-link" %>
-    <%= link_to "Ajouter une performance", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
-
-    <!-- Profile picture with dropdown list -->
-    <div class="navbar-wagon-item">
-      <div class="dropdown">
-        <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-menu">
-          <li class="dropdown-item"><a href="#">Profile</a></li>
-          <li class="dropdown-item"><a href="#">Dashboard</a></li>
-          <li class="dropdown-item"><a href="#">Log Out</a></li>
-        </ul>
-      </div>
-    </div>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-color">
+    <%= link_to root_path do %>
+    <%= image_tag "logo_lightgold.png", width: 70, height: 70%>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
 
+  <div>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
   
-  <!-- Dropdown appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown" role="button"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Host</a></li>
-        <li><a href="#">Trips</a></li>
-        <li><a href="#">Messagese</a></li>
-      </ul>
+  <div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto justify-content-end">
+        <li class="nav-item">
+          <%= link_to "Inscription", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Connexion", new_user_registration_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Ajouter une performance", new_user_registration_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+          </div>
+        </li>
+          </ul>
     </div>
   </div>
+  </nav>
 </div>
-
-
-<%# else  %>
