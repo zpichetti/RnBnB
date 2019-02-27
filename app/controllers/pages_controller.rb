@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @performances = Performance.where(profile_id: current_user.profile.id)
+    @performances = Performance.all
   end
 end

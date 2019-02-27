@@ -1,11 +1,13 @@
 class PerformancesController < ApplicationController
-  before_action :find_profile, only: [ :new, :create ]
+  before_action :find_profile, only: [ :new, :create]
   
   def show
+    @performance = Performance.find(params[:id])
   end
   
   def new
     @performance = Performance.new
+    @performance_date = PerformanceDate.new
   end
   
   def create
@@ -13,13 +15,17 @@ class PerformancesController < ApplicationController
     @performance.profile = @profile
     @performance.performance_date = PerformanceDate.last
     @performance.save
-    redirect_to root_path
+    redirect_to profile_path(@profile.id)
   end
   
   def edit
+    @performance = Performance.find(params[:id])
   end
   
   def update
+    @performance = Performance.find(params[:id])
+    @performance.update(performance_params)
+    redirect_to profile_path(@performance.profile.id)
   end
 
   private
