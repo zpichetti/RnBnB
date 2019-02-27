@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-4 offset-md-4">
+    <h2>Update your profile</h2>
+    <%= simple_form_for(@profile) do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :address %>
+          <%= f.input :address_zipcode %>
+          <%= f.input :address_city %>
+          <%= f.input :address_country, :as => :select %>
+          <%= f.input :performer_description %>
+          <%= f.input :avatar_url %>
+          <%= f.submit "Update profile", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
 .banner-home{
-  height: 600px;
+  height: calc(100vh - 80px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -18,4 +18,18 @@
   font-weight: bold;
   font-size: 40px;
   text-transform: uppercase;
+}
+
+.banner-go{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  font-weight: bold;
+  font-size: 25px;
+  a {
+    text-decoration: none;
+    color: #e7a117;
+  }
 }
