@@ -33,7 +33,7 @@ class PerformancesController < ApplicationController
     end
     @available_performances = @available_performances << Performance.join(:bookings).where(status: "performed")
   end
-
+  
   private
 
   def performance_params

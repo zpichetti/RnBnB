@@ -3,4 +3,8 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     @performances = Performance.where(profile_id: @profile.id)
   end
+
+  def distance
+    Geocoder::Calculations.distance_between([performance.profile.latitude, performance.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude]
+  end 
 end
