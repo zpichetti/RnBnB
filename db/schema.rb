@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_104449) do
+ActiveRecord::Schema.define(version: 2019_02_27_125335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_104449) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "performance_dates", force: :cascade do |t|
-    t.date "start"
-    t.date "end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "performance_id"
-    t.index ["performance_id"], name: "index_performance_dates_on_performance_id"
   end
 
   create_table "performances", force: :cascade do |t|
@@ -84,7 +75,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_104449) do
 
   add_foreign_key "bookings", "performances"
   add_foreign_key "bookings", "profiles"
-  add_foreign_key "performance_dates", "performances"
   add_foreign_key "performances", "categories"
   add_foreign_key "performances", "profiles"
   add_foreign_key "profiles", "users"
