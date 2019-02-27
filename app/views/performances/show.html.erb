@@ -10,6 +10,7 @@
               <h1><%= @performance.title %></h1>
               <h3>Catégorie : <%= @performance.category.name %></h3>
               <p><%=  @performance.description %></p>
+              <p> à <%=   @distance.round(1) %> km</p>
 
               <div class="custom-control custom-radio">
                 <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">

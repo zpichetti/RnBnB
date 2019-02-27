@@ -4,7 +4,6 @@ class ProfilesController < ApplicationController
     @performances = Performance.where(profile_id: @profile.id)
     @nbr_performances = @performances.size
   end
-
   def new
     @profile = Profile.new
   end

@@ -3,6 +3,7 @@ class PerformancesController < ApplicationController
   
   def show
     @performance = Performance.find(params[:id])
+    @distance = Geocoder::Calculations.distance_between([@performance.profile.latitude, @performance.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude]) 
   end
   
   def new
@@ -33,7 +34,7 @@ class PerformancesController < ApplicationController
     end
     @available_performances = @available_performances << Performance.join(:bookings).where(status: "performed")
   end
-
+  
   private
 
   def performance_params
