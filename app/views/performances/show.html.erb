@@ -1,0 +1,11 @@
+<h1>Performance#show</h1>
+
+<ul>
+  <li><strong>Catégorie :</strong> <%= @performance.category.name %></li>
+  <li><strong>Title :</strong>  <%= @performance.title %></li>
+  <li><strong>Description :</strong>  <%= @performance.description %></li>
+  <li><strong>Image_url :</strong>  <%= @performance.image_url %></li>
+  <li><strong>Actif :</strong>  <%= @performance.active %></li>
+</ul>
+
+<%= link_to "Add availabilities", new_performance_performance_date_path(@performance.id), class:"btn btn-primary" %>
