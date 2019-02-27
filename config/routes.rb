@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     # resources :performance_dates, only: %i[new create update destroy] do
     end
     resources :booking, only: %i[update show]
-    resources :performances, only: %i[show edit update] do 
-      resources :performance_dates, only: %i[new create update destroy] 
+    resources :performances, only: %i[show edit update] do
+      resources :performance_dates, only: %i[new create update destroy]
     end 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
