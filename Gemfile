@@ -16,10 +16,11 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'geocoder'
-gem "simple_calendar", "~> 2.0"
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
+gem 'flatpickr_rails'
 gem 'country_select', '~> 4.0'
+
 
 
 group :development do
