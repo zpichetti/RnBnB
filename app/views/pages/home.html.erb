@@ -1,4 +1,4 @@
-<div id="banner-home" class="banner-home" style = "background-image: url(<%= image_path("home.jpg") %>)">
+<div id="banner-home" class="banner-home" style = "background-image: url(<%= image_path("home5.jpg") %>)">
   <%# Change text in banner.js %>
   <h1 id="banner-typed-text">	&nbsp;</h1>
   <div class="text-center banner-go">
@@ -30,5 +30,6 @@
         </div>
       </div>
     <% end %>
+    <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", method: 'delete' %>
   </div>
 </div>
