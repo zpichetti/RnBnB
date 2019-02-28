@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_02_28_113919) do
     t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo"
     t.integer "hour_price"
+    t.string "photo"
     t.index ["category_id"], name: "index_performances_on_category_id"
     t.index ["profile_id"], name: "index_performances_on_profile_id"
   end
