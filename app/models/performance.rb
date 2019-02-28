@@ -1,4 +1,5 @@
 class Performance < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   validates :title, presence: true
   validates :description, presence: true
   validates :image_url, presence: true
@@ -7,3 +8,4 @@ class Performance < ApplicationRecord
   belongs_to :profile
   has_many :booking
 end
+

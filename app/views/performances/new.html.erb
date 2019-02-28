@@ -6,6 +6,8 @@
         <%= f.input :title %>
         <%= f.input :description %>
         <%= f.input :image_url %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
         <%= f.input :category_id, collection: Category.all %>
         <%= f.submit "add a performance", class: "btn btn-primary" %>
       <% end %>

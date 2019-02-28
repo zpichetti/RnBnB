@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col">
         <div class="title-image-performance-card">
-            <%= image_tag("perf-image1.jpg") %>
+            <%= cl_image_tag @performance.photo, height: 300, width: 400, crop: :fill  %>
             <div class="text-left">
               <h1><%= @performance.title %></h1>
               <h3>Catégorie : <%= @performance.category.name %></h3>
