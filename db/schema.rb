@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_02_28_101942) do
+=======
+ActiveRecord::Schema.define(version: 2019_02_28_095037) do
+>>>>>>> e7e308cfbca312524b42c9a27bd4118e68d7af88
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +46,11 @@ ActiveRecord::Schema.define(version: 2019_02_28_101942) do
     t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string "photo"
+=======
+    t.integer "hour_price"
+>>>>>>> e7e308cfbca312524b42c9a27bd4118e68d7af88
     t.index ["category_id"], name: "index_performances_on_category_id"
     t.index ["profile_id"], name: "index_performances_on_profile_id"
   end
