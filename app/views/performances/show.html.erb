@@ -10,8 +10,10 @@
               <h1><%= @performance.title %></h1>
               <h3>Catégorie : <%= @performance.category.name %></h3>
               <p><%=  @performance.description %></p>
-              <p> à <%= @distance.round(1) %> kms</p>
-              <p> <%= @performance.hour_price %> </p>
+              <% unless @distance == 0 %>
+                <p> à <%= @distance.round(1) %> kms</p>
+              <% end %>
+              <p> <%= @performance.hour_price %> € per hour</p>
 
 
               <div class="custom-control custom-radio">
@@ -24,26 +26,24 @@
       </div>
     </div>
 
-    <div class="attributes-perf align-items-center">
-      <div class="description-status-perf">
+    <div class="calendar">
+      <div class="row">
+
+          <%= simple_form_for @booking, html: {class: 'form-inline'}, :url => profile_performance_booking_index_path(current_user.profile.id, @performance.id), :method => :POST do |f| %>
+            <div class="col-sm-4">
+            <%= f.input :start, as: :string%>
+            </div>
+            <div class="col-sm-4 offset-sm-1">
+            <%= f.input :end, as: :string %> 
+            </div>
+            <div class="col-sm-2 offset-sm-1">
+            <%= f.submit "Booking" %>
+            </div>
+          <% end %>
+
       </div>
-    <div>
-      <div class="calendar">
-      
-        <%
-=begin%>
- <%= month_calendar start_date_param: :my_date do |date| %>
-          <%= date %>
-        <% end %> 
-<%
-=end%>
-      </div>      
-      <% if  user_signed_in?%>
-        <div class="text-center">
-          <button type="button" class="btn btn-primary" disabled>Booking !</button>
-          <%= link_to "Bouton booking", new_profile_performance_booking_path(current_user.profile.id, params[:id]), class: "nav-link"  %>
-        </div>
-      <% end %>
     </div>
+
   </div>
+  <div id="dates" data-list="<%=@dates_booked_array.to_json%>"></div>
 </div>

@@ -3,13 +3,13 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new
     @performance = Performance.find(params[:performance_id])
-  end
-
-  def show
-    @booking = Booking.find(params[:id])
   end
 
   def create
@@ -31,6 +31,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:status)
+    params.require(:booking).permit(:status, :start, :end)
   end
 end

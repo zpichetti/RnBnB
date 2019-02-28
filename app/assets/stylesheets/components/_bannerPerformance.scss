@@ -22,24 +22,18 @@
   }
 }
 
-.attributes-perf {
-  display: flex;
-  margin-top: 20px;
-  padding: 20px;
-  justify-content: flex-end;
-  border: 2px solid $darkergold;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
 .description-status-perf {
   flex: 1 1;
   padding: 20px;
 }
 
 .calendar {
-  flex: 0 0 300px;
+  margin-top: 20px;
   padding: 20px;
+  justify-content: space-evenly;
+  border: 2px solid $darkergold;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .relat {
@@ -51,3 +45,4 @@
   position: absolute;
   top: -180px;
 }
+
