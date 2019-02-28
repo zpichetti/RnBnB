@@ -5,7 +5,7 @@
       <a class="nav-link active" id="catalogue-tab" data-toggle="tab" href="#catalogue" role="tab" aria-controls="catalogue" aria-selected="true">Mon catalogue (<%= @nbr_performances %>)</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes preformances à réalisés(0)</a>
+      <a class="nav-link" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes preformances à réalisés(<%= @nbr_perf_a_faire %>)</a> 
     </li>
     <li class="nav-item">
       <a class="nav-link" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Mes performances réservés(0)</a>
@@ -17,7 +17,7 @@
         <div class="col">
           <% @performances.each do |performance| %>
             <div class="card-product">
-              <%= cl_image_path performance.photo, height: 300, width: 400, crop: :fill %> 
+              <%= cl_image_tag performance.photo %> 
               <div class="card-product-infos">
                 <h2><%= link_to "#{performance.title}", performance_path(performance.id) %></h2>
                 <p><%= performance.description %> </p>
@@ -25,11 +25,14 @@
                   <%= link_to edit_performance_path(performance.id) do %>
                     <i class="fas fa-pen"></i>
                   <% end %>
-                  <i class="far fa-trash-alt"></i>
                 </div>
               </div>
               <div class="card-product-status text-center">
-                Status
+                <% if performance.active %>
+                  <%= link_to "Disable", performance_toggle_path(performance), method: :patch, class: "btn btn-danger" %>
+                <% else %>
+                  <%= link_to "Enable", performance_toggle_path(performance), method: :patch, class: "btn btn-primary" %>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -37,7 +40,29 @@
       </div>
     
     </div>
-    <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">sdfsdf</div>
+    <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">
+      <div class="row">
+        <div class="col">
+          <% @performances.each do |performance| %>
+            <% p "----------------------------------" %>
+            <% p performance.booking %>
+            <% p "----------------------------------" %>
+            <% if performance.booking %>
+              <div class="card-product">
+                <%= cl_image_tag performance.photo, height: 300, width: 400, crop: :fill %> 
+                <div class="card-product-infos">
+                  <h2><%= link_to "#{performance.title}", performance_path(performance.id) %></h2>
+                  <p><%= performance.description %> </p>
+                </div>
+                <div class="card-product-status text-center">
+                  Status
+                </div>
+              </div>    
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">tttttttt</div>
   </div>
 

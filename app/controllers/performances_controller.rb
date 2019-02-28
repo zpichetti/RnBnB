@@ -45,9 +45,27 @@ class PerformancesController < ApplicationController
     end
     dates_booked_array
   end
+<<<<<<< HEAD
 
   def performance_params
     params.require(:performance).permit(:title, :description, :image_url, :photo, :category_id, :performance_date_id, :profile_id, :start_date, :end_date, :hour_price)
+=======
+  
+  def toggle
+    @performance = Performance.find(params[:id])
+    if @performance.active
+      @performance.active = false
+    else
+      @performance.active = true
+    end
+    @performance.save
+    redirect_to profile_path(@performance.profile.id)
+  end
+  private
+
+  def performance_params
+    params.require(:performance).permit(:title, :description, :category_id, :photo, :photo_cache, :performance_date_id, :profile_id, :start_date, :end_date, :hour_price)
+>>>>>>> 5d50de7a0c8671a631795f711fc1b24658250ad4
   end
 
   def find_profile

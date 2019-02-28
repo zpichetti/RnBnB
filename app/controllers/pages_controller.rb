@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @performances = Performance.all
+    @performances = Performance.where(active: true)
   end
 end

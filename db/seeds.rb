@@ -59,7 +59,7 @@ profile3.save!
 
 puts "create perf & booking"
 
-perf = Performance.new(title: "Best performer of the year", description: "Tout l'univers RnB se l'arrache, c'est un dinguo un peu foufou, il s'appelle Nicolas", image_url: "test pour le moment", hour_price: 15)
+perf = Performance.new(title: "Best performer of the year", description: "Tout l'univers RnB se l'arrache, c'est un dinguo un peu foufou, il s'appelle Nicolas", remote_photo_url: "http://res.cloudinary.com/dg6u7lphd/image/upload/v1551358990/aj-colores-1082427-unsplash.jpg", hour_price: 15)
 perf.category = Category.find_by_name('RnB')
 perf.profile = profile1
 perf.save!

@@ -8,6 +8,7 @@
     "flatpickr": "^4.5.4",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
+    "sweetalert": "^2.1.2",
     "typed.js": "^2.0.10"
   },
   "devDependencies": {
