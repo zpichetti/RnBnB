@@ -18,11 +18,8 @@ gem 'webpacker'
 gem 'geocoder'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
-<<<<<<< HEAD
 gem 'flatpickr_rails'
-=======
 gem 'country_select', '~> 4.0'
->>>>>>> 5d50de7a0c8671a631795f711fc1b24658250ad4
 
 
 group :development do
