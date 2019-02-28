@@ -25,13 +25,14 @@
                   <%= link_to edit_performance_path(performance.id) do %>
                     <i class="fas fa-pen"></i>
                   <% end %>
-                    <%# <a id="sweet-alert-demo"><i class="far fa-trash-alt"></i></a> %>
-                    <button id="sweet-alert-demo" class="btn btn-danger">Delete</button>
-                  <%= link_to "", performance_path(performance), method: :delete, id: "delete-link", class: "hidden" %>
                 </div>
               </div>
               <div class="card-product-status text-center">
-                Status
+                <% if performance.active %>
+                  <%= link_to "Disable", performance_toggle_path(performance), method: :patch, class: "btn btn-danger" %>
+                <% else %>
+                  <%= link_to "Enable", performance_toggle_path(performance), method: :patch, class: "btn btn-primary" %>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -52,12 +53,6 @@
                 <div class="card-product-infos">
                   <h2><%= link_to "#{performance.title}", performance_path(performance.id) %></h2>
                   <p><%= performance.description %> </p>
-                  <div class="card-product-controler">
-                    <%= link_to edit_performance_path(performance.id) do %>
-                      <i class="fas fa-pen"></i>
-                    <% end %>
-                    <i class="far fa-trash-alt"></i>
-                  </div>
                 </div>
                 <div class="card-product-status text-center">
                   Status
