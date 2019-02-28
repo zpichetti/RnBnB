@@ -30,8 +30,11 @@
         </li>
 
         <li class="nav-item dropdown" >
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "navbar-avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <%= cl_image_tag(current_user.profile.avatar_url, 
+                 :width => 43, :height => 43, 
+                 :crop => :thumb, :gravity => :face, :radius => 50, 
+                 :default_image => cl_image_tag("avatar.png"), class: "navbar-avatar dropdown-toggle round-avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>          
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Edit profile", edit_profile_path(current_user.profile), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", method: 'delete' %>
           </div>
@@ -40,3 +43,4 @@
     </ul>
   </div>
 </nav>
+ 
