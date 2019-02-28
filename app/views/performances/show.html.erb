@@ -1,11 +1,11 @@
-<div class="banner-performance" style = "background-image: url(<%= image_path("background-card.jpg") %>)">
+<div class="banner-performance" style = "background-image: url(<%= cl_image_path(@performance.photo) unless @performance.photo.blank?%>)">
 </div>
 <div class="container relat">
   <div class="container abso">
     <div class="row">
       <div class="col">
         <div class="title-image-performance-card">
-            <%= cl_image_tag @performance.photo, height: 300, width: 400, crop: :fill  %>
+            <%= cl_image_tag(@performance.photo, width: 400, height: 300, crop: :fill)%>
             <div class="text-left">
               <h1><%= @performance.title %></h1>
               <h3>Catégorie : <%= @performance.category.name %></h3>
