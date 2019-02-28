@@ -26,10 +26,14 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to "Dashboard", profile_path(current_user.profile.id), class: "nav-link" %>
+          <div class="dashboard">
+            <%= link_to "Dashboard", profile_path(current_user.profile.id), class: "nav-link" %>
+            <div class="dashboard-notif"><%= current_user.profile.notification if current_user.profile.notification > 0 %></div>
+          </div>
         </li>
 
         <li class="nav-item dropdown" >
+        
         <%= cl_image_tag(current_user.profile.avatar_url, 
                  :width => 43, :height => 43, 
                  :crop => :thumb, :gravity => :face, :radius => 50, 
