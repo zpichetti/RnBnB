@@ -44,5 +44,11 @@ initSweetalert('#sweet-alert-enable', {
 // animation des cards
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import '../components/flatpickr';
 AOS.init();
+
+// affichage des calendriers
+import { initflatpickr } from '../components/flatpickr';
+if (document.getElementById('calendar-flatpickr')) {
+  initflatpickr();
+}
+
