@@ -8,8 +8,29 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+
+// TypedJS pour la home
 import { loadDynamicBannerText } from '../components/banner';
-loadDynamicBannerText();
+
+if (document.getElementById("banner-typed-text")) {
+  loadDynamicBannerText();
+}
+
+// Sweetalert pour le delete des performances
+import { initSweetalert } from '../components/init_sweetalert';
+
+initSweetalert('#sweet-alert-demo', {
+  title: "Are you sure?",
+  text: "This action cannot be reversed",
+  icon: "warning"
+  }, (value) => {
+    console.log("ok michel")
+    if (value) {
+      const link = document.querySelector('#delete-link');
+      link.click();
+    }
+});
+
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
