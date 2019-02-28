@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  mount_uploader :avatar_url, PhotoUploader
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :address, presence: true

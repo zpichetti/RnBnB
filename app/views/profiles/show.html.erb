@@ -17,7 +17,7 @@
         <div class="col">
           <% @performances.each do |performance| %>
             <div class="card-product">
-              <%= cl_image_tag performance.photo, height: 300, width: 400, crop: :fill %> 
+              <%= cl_image_tag performance.photo %> 
               <div class="card-product-infos">
                 <h2><%= link_to "#{performance.title}", performance_path(performance.id) %></h2>
                 <p><%= performance.description %> </p>
