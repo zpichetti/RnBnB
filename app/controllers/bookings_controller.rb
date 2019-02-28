@@ -14,23 +14,27 @@ class BookingsController < ApplicationController
 
   def create
     @performance = Performance.find(params[:performance_id])
-    @booking = Booking.new(status: "On demande")
+    @booking = Booking.new(booking_params)
+    @booking.status = "on demand"
     @booking.performance = @performance
     @booking.profile = current_user.profile
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render :new
+      p "Loose"
+      render "/performances/#{@performance.id}"
     end
   end
 
   def update
-    @booking.statut = booking_params.status
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to booking_path(@booking)
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:status, :start, :end)
+    params.require(:booking).permit(:status, :start, :end, :performance_id, :profile_id)
   end
 end
