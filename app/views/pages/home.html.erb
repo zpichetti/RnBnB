@@ -2,11 +2,11 @@
   <%# Change text in banner.js %>
   <h1 id="banner-typed-text">	&nbsp;</h1>
   <div class="text-center banner-go">
-    <a href="#sectionOne">Select your talent <br> <i class="fas fa-chevron-down"></i></a>
+    <a href="#sectionOne">Select our talents<br><i class="fas fa-chevron-down"></i></a>
   </div>
 </div>
 <div class="container" id="sectionOne">
-  <h1 class="title-home text-center">Choose your experience :</h1>
+  <h1 class="title-home text-center">Choose from <%= @performances.size %> experience </h1>
   <div class="row">
     <% @performances.each do |performance| %>
       <div class="cards col-sm-4 col-xs-12">
@@ -22,7 +22,9 @@
               <h2><%= performance.profile.first_name %></h2>
               <p><%= performance.profile.address_city %></p>
             </div>
-            <div class="card-footer-price">5€</div>
+            <div class="card-footer-price">
+              <%= performance.hour_price ? performance.hour_price : "-"%> €
+            </div>
           </div>
         </div>
       </div>
