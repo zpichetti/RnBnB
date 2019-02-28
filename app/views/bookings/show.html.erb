@@ -2,26 +2,29 @@
   <h1>Show</h1>
   <%= @booking.performance.title %> status <%= @booking.status %>
 
-  <% if @booking.status != "Validate" || @booking.status != "Refuse by performer"%>
+  <% if @booking.status != "performed" || @booking.status != "cancelled by performer" || @booking.status != "cancelled by user" %>
     <%= simple_form_for([@performance, @booking]) do |f| %>
-      <%= f.hidden_field :status, value: "Canceled by user"%>
+      <%= f.hidden_field :status, value: "cancelled by user"%>
       <%= f.submit "Cancel performance", class: "btn btn-danger" %>
     <% end %>
   <% end %>
 
-  <% if @booking.status == "Waiting payment"%>
+  <%= simple_form_for([@performance, @booking]) do |f| %>
+      <%= f.hidden_field :status, value: "waiting for payment"%>
+      <%= f.submit "waiting for payment", class: "btn btn-danger" %>
+    <% end %>
+
+  <% if @booking.status == "waiting for payment"%>
     <%= simple_form_for([@performance, @booking]) do |f| %>
-      <%= f.hidden_field :status, value: "Paye"%>
+      <%= f.hidden_field :status, value: "payed"%>
       <%= f.submit "Pay", class: "btn btn-primary" %>
     <% end %>
   <% end %>
 
-  <% if @booking.status == "Payed" %>
+  <% if @booking.status == "payed" %>
     <%= simple_form_for([@performance, @booking]) do |f| %>
-      <%= f.hidden_field :status, value: "Validate"%>
+      <%= f.hidden_field :status, value: "performed"%>
       <%= f.submit "Validé la performance", class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>
-
-

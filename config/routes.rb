@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: %i[update show]
   resources :performances, only: %i[show edit update] do
-  end 
+  end
 
   patch "/performances/toggle/:id", to: "performances#toggle", as: "performance_toggle"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
