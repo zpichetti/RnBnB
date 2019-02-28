@@ -36,6 +36,16 @@ class PerformancesController < ApplicationController
     Booking.where("NOT status = 'performed' AND performance_id = ?", perf.id).pluck(:start, :end)
   end
   
+  def toggle
+    @performance = Performance.find(params[:id])
+    if @performance.active
+      @performance.active = false
+    else
+      @performance.active = true
+    end
+    @performance.save
+    redirect_to profile_path(@performance.profile.id)
+  end
   private
 
   def performance_params
