@@ -17,6 +17,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'geocoder'
 gem "simple_calendar", "~> 2.0"
+gem 'cloudinary', '~> 1.9.1'
+gem 'carrierwave', '~> 1.2'
 
 
 group :development do
