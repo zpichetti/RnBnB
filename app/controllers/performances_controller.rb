@@ -31,18 +31,15 @@ class PerformancesController < ApplicationController
     redirect_to profile_path(@performance.profile.id)
   end
 
-  def performances_available?
-    @available_performances = []
-    Performance.all.each do |perf|
-      @available_performances << perf if perf.bookings.any?
-    end
-    @available_performances = @available_performances << Performance.join(:bookings).where(status: "performed")
+  def dates_booked
+    @performance = Performance.find(params[:id])
+    Booking.where("NOT status = 'performed' AND performance_id = ?", perf.id).pluck(:start, :end)
   end
   
   private
 
   def performance_params
-    params.require(:performance).permit(:title, :description, :image_url, :photo, :category_id, :performance_date_id, :profile_id, :start_date, :end_date)
+    params.require(:performance).permit(:title, :description, :image_url, :category_id, :performance_date_id, :profile_id, :start_date, :end_date, :hour_price)
   end
 
   def find_profile
