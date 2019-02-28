@@ -29,11 +29,10 @@
               </div>
               <div class="card-product-status text-center">
                 <% if performance.active %>
-                  <button id="sweet-alert-disable" class="btn btn-danger">Disable</button>
+                  <%= link_to "Disable", performance_toggle_path(performance), method: :patch, class: "btn btn-danger" %>
                 <% else %>
-                  <button id="sweet-alert-enable" class="btn btn-primary">Enable</button>
+                  <%= link_to "Enable", performance_toggle_path(performance), method: :patch, class: "btn btn-primary" %>
                 <% end %>
-                <%= link_to "", performance_toggle_path(performance), method: :patch, id: "toggle-link", class: "hidden" %>
               </div>
             </div>
           <% end %>
