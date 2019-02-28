@@ -39,7 +39,7 @@ class PerformancesController < ApplicationController
   private
 
   def performance_params
-    params.require(:performance).permit(:title, :description, :image_url, :photo, :category_id, :performance_date_id, :profile_id, :start_date, :end_date)
+    params.require(:performance).permit(:title, :description, :image_url, :photo, :category_id, :performance_date_id, :profile_id, :start_date, :end_date, :hour_price)
   end
 
   def find_profile
