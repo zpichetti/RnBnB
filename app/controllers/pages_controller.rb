@@ -5,6 +5,15 @@ class PagesController < ApplicationController
     else
       @performances = Performance.where(active: true)
     end
+  end 
+end
+
+
+def index
+  if params[:query].present?
+    sql_query = "title ILIKE :query OR description ILIKE :query"
+    @performances = Performance.where(sql_query, query: "%#{params[:query]}%")
+  else
     @performances = Performance.where(active: true)
   end
 end
