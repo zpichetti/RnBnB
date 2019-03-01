@@ -12,8 +12,15 @@
     <% @performances.each do |performance| %>
       <div class="cards col-sm-4 col-xs-12">
         <div class="card">
-        <% p cl_image_path(performance.photo) unless performance.photo.blank?%>
-          <div class="card-content" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= cl_image_path(performance.photo) unless performance.photo.blank?%>)">
+  
+          
+          <% if (performance.photo.url.nil?)  %>
+            <% photo_to_display = 'illus_default.jpg' %>
+          <% else %>
+            <% photo_to_display = performance.photo %>
+          <% end %>
+
+          <div class="card-content" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= cl_image_path(photo_to_display) %>)">
             <span class="btn btn-warning btn-sm card-content-tag"><%= performance.category.name %></span>
             <div class="card-content-title"><%= performance.title %></div>
             <a href="<%= performance_path(performance) %>" class="card-content-link"></a>
