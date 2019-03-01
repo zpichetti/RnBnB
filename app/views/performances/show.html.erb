@@ -12,7 +12,7 @@
       <div class="col">
         <div class="title-image-performance-card">
           <% if @performance.photo.url.nil? %>
-           <%= cl_image_tag('illus_default.jpg', width: 400, height: 300, crop: :fill )%>
+            <%= cl_image_tag('illus_default.jpg', width: 400, height: 300, crop: :fill )%>
           <% else %>
             <%= cl_image_tag(@performance.photo, width: 400, height: 300, crop: :fill )%>
           <% end %>
@@ -20,7 +20,17 @@
           <div class="text-left">
             <h1><%= @performance.title %></h1>
             <h3>Catégorie : <%= @performance.category.name %></h3>
-            <p><%=  @performance.description %></p>
+            <p>Review : <span style="color:#e7a117"><% rate = @performance.average_rating %>
+              <% if rate != '-' %>
+                <%= rate > 0.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 1.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 2.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 3.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 4.5 ? icon('fas', 'star') : icon('far', 'star') %>
+              <% end %>
+              </span>
+            </p>
+            <p><%=  @performance.description.capitalize %></p>
             <p> <%= @performance.hour_price %> € per hour</p>
 
           </div>
@@ -60,7 +70,6 @@
 
       </div>
     </div>
-
   </div>
 
   <div id="dates" data-list="<%=@dates_booked_array.to_json%>"></div>
