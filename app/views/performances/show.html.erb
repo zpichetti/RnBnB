@@ -15,12 +15,6 @@
             <% end %>
             <p> <%= @performance.hour_price %> € per hour</p>
 
-            
-            <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-              <label class="custom-control-label" for="customRadio1">Desactivate performance</label>
-            </div>
-
           </div>
         </div>
       </div>
@@ -28,17 +22,29 @@
 
     <div id="calendar-flatpickr" class="calendar">
       <div class="row">
-        <%= simple_form_for @booking, html: {class: 'form-inline'}, :url => profile_performance_bookings_path(current_user.profile.id, @performance.id), :method => :POST do |f| %>
+        <% if user_signed_in? %>
+          <%= simple_form_for @booking, html: {class: 'form-inline'}, :url => profile_performance_bookings_path(current_user.profile.id, @performance.id), :method => :POST do |f| %>
+            <div class="col-sm-4">
+              <%= "Start date" %>
+              <%= f.input_field :start, as: :string, value: "Start date"%>
+            </div>
+            <div class="col-sm-4 offset-sm-1">
+              <%= "End date" %>
+              <%= f.hidden_field :end, as: :string, value: "End date" %> 
+            </div>
+            <div class="col-sm-2 offset-sm-1">
+              <%= f.submit "Booking" %>
+            </div>
+          <% end %>
+        <% else %>
           <div class="col-sm-4">
-            <%= f.input :start, as: :string%>
+            <p>Consultez les disponibilités de nos meilleurs artistes en vous inscrivant : </p>
           </div>
-          <div class="col-sm-4 offset-sm-1">
-            <%= f.input :end, as: :string %> 
-          </div>
-          <div class="col-sm-2 offset-sm-1">
-            <%= f.submit "Booking" %>
+          <div class="col-sm-4">
+            <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
           </div>
         <% end %>
+
       </div>
     </div>
 

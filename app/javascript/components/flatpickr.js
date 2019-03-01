@@ -5,6 +5,8 @@ const initflatpickr = () => {
   const startDateInput = document.getElementById('booking_start');
   const endDateInput = document.getElementById('booking_end');
   const dates_disable = JSON.parse(document.getElementById('dates').dataset.list);
+  startDateInput.style.visibility = "hidden";
+  endDateInput.style.visibility = "hidden";
 
   if ((startDateInput != null) && (endDateInput != null)) {
     flatpickr(startDateInput, {
