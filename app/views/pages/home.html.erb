@@ -18,7 +18,15 @@
             <a href="<%= performance_path(performance) %>" class="card-content-link"></a>
           </div>
           <div class="card-footer">
-            <%= image_tag("avatar.png", class:"card-footer-avatar") %> 
+
+            <% if performance.profile.avatar_url.url.nil? %>
+              <%= cl_image_tag('rl6iwmhwftzkbobduknm.png', class:"card-footer-avatar")%>
+            <% else %>
+              <%= cl_image_tag(performance.profile.avatar_url, class:"card-footer-avatar") %>
+            <% end %>
+
+
+            
             <div class="card-footer-middle">
               <h2><%= performance.profile.first_name %></h2>
               <p><%= performance.profile.address_city %></p>

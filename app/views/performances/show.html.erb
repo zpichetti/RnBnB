@@ -1,11 +1,22 @@
-<div class="banner-performance" style = "background-image: url(<%= cl_image_path(@performance.photo) unless @performance.photo.blank?%>)">
+<div class="banner-performance" style = "background-image: url(
+  <% if @performance.photo.url.nil? %>
+    <%= cl_image_path('illus_default.jpg')%>
+  <% else %>
+    <%= cl_image_path(@performance.photo)%>
+  <% end %>
+  )">
 </div>
 <div class="container relat">
   <div class="container abso">
     <div class="row">
       <div class="col">
         <div class="title-image-performance-card">
-          <%= cl_image_tag(@performance.photo, width: 400, height: 300, crop: :fill)%>
+          <% if @performance.photo.url.nil? %>
+           <%= cl_image_tag('illus_default.jpg', width: 400, height: 300, crop: :fill )%>
+          <% else %>
+            <%= cl_image_tag(@performance.photo, width: 400, height: 300, crop: :fill )%>
+          <% end %>
+
           <div class="text-left">
             <h1><%= @performance.title %></h1>
             <h3>Catégorie : <%= @performance.category.name %></h3>
@@ -22,25 +33,30 @@
 
     <div id="calendar-flatpickr" class="calendar">
       <div class="row">
+
         <% if user_signed_in? %>
-          <%= simple_form_for @booking, html: {class: 'form-inline'}, :url => profile_performance_bookings_path(current_user.profile.id, @performance.id), :method => :POST do |f| %>
-            <div class="col-sm-4">
-              <%= "Start date" %>
-              <%= f.input_field :start, as: :string, value: "Start date"%>
-            </div>
-            <div class="col-sm-4 offset-sm-1">
-              <%= "End date" %>
-              <%= f.hidden_field :end, as: :string, value: "End date" %> 
-            </div>
-            <div class="col-sm-2 offset-sm-1">
-              <%= f.submit "Booking" %>
-            </div>
+          <% unless @performance.profile == current_user.profile %>
+            <%= simple_form_for @booking, html: {class: 'form-inline'}, :url => profile_performance_bookings_path(current_user.profile.id, @performance.id), :method => :POST do |f| %>
+              <div class="col-sm-4">
+                <%= "Start date" %>
+                <%= f.input_field :start, as: :string, value: "Start date"%>
+              </div>
+              <div class="col-sm-4 offset-sm-1">
+                <%= "End date" %>
+                <%= f.hidden_field :end, as: :string, value: "End date" %> 
+              </div>
+              <div class="col-sm-2 offset-sm-1">
+                <%= f.submit "Booking" %>
+              </div>
+            <% end %>
+          <% else %>
           <% end %>
+
         <% else %>
-          <div class="col-sm-4">
+          <div class="col-sm-6 align-middle">
             <p>Consultez les disponibilités de nos meilleurs artistes en vous inscrivant : </p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 align-middle">
             <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
           </div>
         <% end %>
@@ -49,5 +65,6 @@
     </div>
 
   </div>
+
   <div id="dates" data-list="<%=@dates_booked_array.to_json%>"></div>
 </div>
