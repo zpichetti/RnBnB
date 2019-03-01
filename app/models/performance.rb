@@ -8,4 +8,5 @@ class Performance < ApplicationRecord
   belongs_to :category
   belongs_to :profile
   has_many :booking
+  has_many :review
 end
