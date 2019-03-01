@@ -10,7 +10,7 @@
           <%= f.input :address_city %>
           <%= f.input :address_country, priority: ["FR", "BE", "DE"] %>
           <%= f.input :performer_description %>
-          <%= f.input :avatar_url %>
+          <%= f.input :avatar_url, as: :file %>
           <%= f.input :avatar_url_cache, as: :hidden %>
           <%= f.submit "Update profile", class: "btn btn-primary btn-block" %>
       <% end %>

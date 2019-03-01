@@ -12,4 +12,10 @@ class Profile < ApplicationRecord
   has_many :performances
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def notification
+    my_bookings = self.bookings.where(status: "waiting for payment").size
+    bookings = Booking.joins("INNER JOIN performances ON performances.id = bookings.performance_id").where("bookings.status = 'on demand' AND performances.profile_id=?", self.id).size
+    my_bookings + bookings
+  end
 end

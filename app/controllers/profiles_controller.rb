@@ -7,12 +7,13 @@ class ProfilesController < ApplicationController
     @nbr_performances = @performances.size
 
     # recuperation des bookings pour le current user
-    @bookings = Booking.where()
-    @performances_booked = 0
-    @nbr_perf_a_faire = nbr_perf_a_faire(@performances)
+    # @cocktails = Cocktail.joins(doses: :ingredient).where("ingredients.name LIKE ?", "%#{params[:ingredient].capitalize}%")
+    @bookings = Booking.joins("INNER JOIN performances ON performances.id = bookings.performance_id").where("performances.profile_id=?", @profile.id).order(:start)
+    @nbr_bookings = @bookings.size
 
     # recuperation des bookings faite par le current user
     @my_bookings = Booking.where(profile_id: @profile.id)
+    @nbr_my_bookings = @my_bookings.size
   end
 
   def new
@@ -40,14 +41,6 @@ class ProfilesController < ApplicationController
   end
 
   private
-
-  def nbr_perf_a_faire(performances)
-    nbr = 0
-    performances.each do |performance|
-      nbr += performance.booking.size
-    end
-    return nbr
-  end
 
   def profile_params
     params.require(:profile).permit(:last_name, :first_name, :address, :address_city, :address_zipcode, :address_country, :performer_description, :avatar_url)

@@ -51,6 +51,22 @@
   color: $darkergold;
 }
 
+.dashboard{
+  position:relative;
+}
+
+.dashboard-notif{
+  position: absolute;
+  padding:0 5px;
+  right: -12px;
+  top: -7px;
+  color: white;
+  z-index:3;
+  font-weight: bold;
+  font-size: 12px;
+  background: $darkergold;
+  border-radius: 10px;
+}
 // .dropdown-item:active{ 
 //   background-color: $darkergold;
 //   color: $darkergrey;
