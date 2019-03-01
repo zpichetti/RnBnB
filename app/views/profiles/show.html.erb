@@ -23,7 +23,13 @@
         <div class="col">
           <% @performances.each do |performance| %>
             <div class="card-product">
-              <%= cl_image_tag performance.photo %> 
+            
+              <% if (performance.photo.url.nil?)  %>
+               <%= cl_image_tag 'illus_default.jpg' %> 
+              <% else %>
+                <%= cl_image_tag performance.photo %> 
+              <% end %>
+
               <div class="card-product-infos">
                 <h2><%= link_to "#{performance.title}", performance_path(performance.id) %></h2>
                 <p><%= performance.description %> </p>
