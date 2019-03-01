@@ -10,9 +10,6 @@
             <h1><%= @performance.title %></h1>
             <h3>Catégorie : <%= @performance.category.name %></h3>
             <p><%=  @performance.description %></p>
-            <% unless @distance == 0 %>
-              <p> à <%= @distance.round(1) %> kms</p>
-            <% end %>
             <p> <%= @performance.hour_price %> € per hour</p>
 
             

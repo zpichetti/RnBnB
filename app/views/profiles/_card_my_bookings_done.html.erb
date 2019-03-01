@@ -6,7 +6,9 @@
       <div class="card-product-infos">
         <h2><%= link_to "#{booking.performance.title}", performance_path(booking.performance.id) %></h2>
         <p><%= booking.performance.description %> </p>
-        <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p>
+        <% if booking.start %>
+          <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p>
+        <% end %>
       </div>
       <div class="card-product-status text-center">
         <% if booking.status == "payed" %>
