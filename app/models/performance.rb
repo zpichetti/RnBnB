@@ -9,4 +9,13 @@ class Performance < ApplicationRecord
   belongs_to :profile
   has_many :booking
   has_many :review
+
+
+  # def distance
+  #   stancedi = Geocoder::Calculations.distance_between([self.profile.latitude, self.profile.longitude], [current_user.profile.latitude, current_user.profile.longitude])
+  #   stancedi.round(1)
+  # end 
+
 end
+
+
