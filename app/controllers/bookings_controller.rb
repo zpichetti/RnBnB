@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
       redirect_to profile_path(current_user.profile,"3")
     else
       p "Loose"
-      render "/performances/#{@performance.id}"
+      render "/performances/show"
     end
   end
 
