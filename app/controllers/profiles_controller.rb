@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   def show
+    @review = Review.new
     @profile = current_user.profile
     # recuperation des performances prose par le current user
     @performances = Performance.where(profile_id: @profile.id)

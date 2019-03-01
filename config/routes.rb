@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: %i[update show]
   resources :performances, only: %i[show edit update] do
+    resources :reviews, only: :create
   end
 
   patch "/performances/toggle/:id", to: "performances#toggle", as: "performance_toggle"
