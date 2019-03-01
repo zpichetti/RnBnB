@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
   def show
     @profile = current_user.profile
-
     # recuperation des performances prose par le current user
     @performances = Performance.where(profile_id: @profile.id)
     @nbr_performances = @performances.size
@@ -14,6 +13,15 @@ class ProfilesController < ApplicationController
     # recuperation des bookings faite par le current user
     @my_bookings = Booking.where(profile_id: @profile.id)
     @nbr_my_bookings = @my_bookings.size
+    if params[:format]
+      @page = params[:format]
+    else
+      if @nbr_performances != 0
+        @page = "1"
+      else
+        @page = "3"
+      end
+    end
   end
 
   def new
