@@ -1,0 +1,64 @@
+<hr>
+<% @my_bookings.each do |booking| %>
+  <% if booking.status.split(' ')[0] == "cancelled" || booking.status == "performed" %>
+    <div class="card-product card-disable">
+      <%= cl_image_tag booking.performance.photo %> 
+      <div class="card-product-infos">
+        <h2><%= link_to "#{booking.performance.title}", performance_path(booking.performance.id) %></h2>
+        <p><%= booking.performance.description %> </p>
+        <% if booking.start %>
+          <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p>
+        <% end %>
+      </div>
+      <div class="card-product-status text-center">
+        <% if booking.status == "payed" %>
+          <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
+            <%= f.hidden_field :status, value: "performed"%>
+            <%= f.submit "Performed ?", class: "btn-profile-card btn btn-primary btn-sm" %>
+          <% end %>
+        <% end %>
+        <% if booking.status == "waiting for payment" %>
+          <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
+            <%= f.hidden_field :status, value: "payed"%>
+            <%= f.submit "Checkout", class: "btn-profile-card btn btn-primary btn-sm" %>
+          <% end %>
+        <% end %>
+        <% if booking.status == "on demand" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed"%>
+          <p><strong><%= booking.status.capitalize %></strong></p>
+        <% end %>
+        <% if booking.status.split(' ')[0] != "cancelled" && booking.status != "performed" %>
+          <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
+            <%= f.hidden_field :status, value: "cancelled by user"%>
+            <%= f.submit "Cancel", class: "btn-profile-card btn btn-danger btn-sm" %>
+          <% end %>
+        <% end %>
+        <% if booking.status == "performed" %>
+          <button type="button" class="btn-profile-card btn btn-primary btn-sm" data-toggle="modal" data-target="#reviewModal-<%= booking.performance.id %>">
+            Add review
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <!-- Modal -->
+  <div class="modal fade" id="reviewModal-<%= booking.performance.id %>" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel">Add review for <%= booking.performance.title %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for([booking.performance, @review]) do |f| %>
+            <%= f.input :content %>
+            <%= f.input :note, collection: 0..5 %>
+            <%= f.submit "add a review", class: "btn btn-success btn-block" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+

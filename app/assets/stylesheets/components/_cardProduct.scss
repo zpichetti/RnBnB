@@ -1,3 +1,13 @@
+.nav-tabs .nav-link.active {
+  opacity: 1;
+  border-bottom: 3px solid $darkergold;
+  margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link:hover{
+  border-color: #E3E3E3 #E3E3E3 #E3E3E3;
+}
+
 .card-product {
   overflow: hidden;
   height: 120px;
@@ -6,6 +16,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.card-disable {
+  opacity: 0.6;
 }
 
 .card-product img {

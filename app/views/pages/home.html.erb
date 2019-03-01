@@ -6,7 +6,8 @@
   </div>
 </div>
 <div class="container" id="sectionOne">
-  <h1 class="title-home text-center">Choose from <%= @performances.size %> experience </h1>
+
+  <h1 class="title-home text-center">Choose from <%= pluralize @performances.size, "experience" %></h1>
   <div class="row">
     <% @performances.each do |performance| %>
       <div class="cards col-sm-4 col-xs-12">
@@ -24,20 +25,27 @@
             <% else %>
               <%= cl_image_tag(performance.profile.avatar_url, class:"card-footer-avatar") %>
             <% end %>
-
-
-            
+               
             <div class="card-footer-middle">
               <h2><%= performance.profile.first_name %></h2>
               <p><%= performance.profile.address_city %></p>
             </div>
+            <div class="card-footer-rate">
+              <% rate = performance.average_rating %>
+              <% if rate != '-' %>
+                <%= rate > 0.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 1.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 2.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 3.5 ? icon('fas', 'star') : icon('far', 'star') %>
+                <%= rate > 4.5 ? icon('fas', 'star') : icon('far', 'star') %>
+              <% end %>
+            </div>
             <div class="card-footer-price">
-              <%= performance.hour_price ? performance.hour_price : "-"%> €
+            <b> <%= performance.hour_price ? performance.hour_price : "-"%>  €</b>/hour
             </div>
           </div>
         </div>
       </div>
     <% end %>
-    <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", method: 'delete' %>
   </div>
 </div>

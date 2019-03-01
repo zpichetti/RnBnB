@@ -1,19 +1,24 @@
 <div class="container">
-  
   <h2>Welcome <%= @profile.first_name %> <%= @profile.last_name %></h2>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link <%= "active" if params[:format]== "1" %>" id="catalogue-tab" data-toggle="tab" href="#catalogue" role="tab" aria-controls="catalogue" aria-selected="true">Mon catalogue (<%= @nbr_performances %>)</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link <%= "active" if params[:format]== "2" %>" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes preformances à réalisés(<%= @nbr_bookings %>)</a> 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link  <%= "active" if params[:format]== "3" %>" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Mes performances réservés(<%= @nbr_my_bookings %>)</a>
-    </li>
+    <% if @nbr_performances != 0 %>
+      <li class="nav-item">
+        <a class="nav-link <%= "active" if @page == "1" %>" id="catalogue-tab" data-toggle="tab" href="#catalogue" role="tab" aria-controls="catalogue" aria-selected="true">Mon catalogue (<%= @nbr_performances %>)</a>
+      </li>
+    <% end %>
+    <% if @nbr_bookings != 0 %> 
+      <li class="nav-item">
+        <a class="nav-link <%= "active" if @page == "2" %>" id="performance-tab" data-toggle="tab" href="#performance" role="tab" aria-controls="performance" aria-selected="false">Mes performances à réaliser (<%= @nbr_bookings %>)</a> 
+      </li>
+    <% end %>
+    <% if @nbr_my_bookings != 0 %>
+      <li class="nav-item">
+        <a class="nav-link  <%= "active" if @page == "3" %>" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Mes réservations (<%= @nbr_my_bookings %>)</a>
+      </li>
+    <% end %>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade <%= "show active" if params[:format]== "1" %>" id="catalogue" role="tabpanel" aria-labelledby="catalogue-tab">
+    <div class="tab-pane fade <%= "show active" if @page == "1" %>" id="catalogue" role="tabpanel" aria-labelledby="catalogue-tab">
       <div class="row">
         <div class="col">
           <% @performances.each do |performance| %>
@@ -40,75 +45,21 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade <%= "show active" if params[:format]== "2" %>" id="performance" role="tabpanel" aria-labelledby="performance-tab">
+    <div class="tab-pane fade <%= "show active" if @page == "2" %>" id="performance" role="tabpanel" aria-labelledby="performance-tab">
       <div class="row">
         <div class="col">
-          <% @bookings.each do |booking| %>
-            <div class="card-product">
-              <%= cl_image_tag booking.performance.photo, height: 300, width: 400, crop: :fill %> 
-              <div class="card-product-infos">
-                <h2><%= link_to "#{booking.performance.title}", performance_path(booking.performance.id) %></h2>
-                <p><%= booking.performance.description %> </p>
-                <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p> 
-              </div>
-              <div class="card-product-status text-center">
-                <% if booking.status == "waiting for payment" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed"%>
-                  <p><strong><%= booking.status.capitalize %></strong></p>
-                <% end %>
-                <% if booking.status == "on demand" %>
-                  <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
-                    <%= f.hidden_field :status, value: "waiting for payment"%>
-                    <%= f.submit "Vadidate", class: "btn-profile-card btn btn-primary btn-sm" %>
-                  <% end %>
-                <% end %>
-                <% if booking.status.split(' ')[0] != "cancelled" && booking.status != "performed"%>
-                  <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
-                    <%= f.hidden_field :status, value: "cancelled by performer"%>
-                    <%= f.submit "Cancel", class: "btn-profile-card btn btn-danger btn-sm" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>    
-          <% end %>
+          <%= render "card_booking" %>
+          <hr>
+          <%= render "card_booking_done" %>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade <%= "show active" if params[:format]== "3" %>" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+    <div class="tab-pane fade <%= "show active" if @page == "3" %>" id="booking" role="tabpanel" aria-labelledby="booking-tab">
       <div class="row">
         <div class="col">
-          <% @my_bookings.each do |booking| %>
-            <div class="card-product">
-              <%= cl_image_tag booking.performance.photo %> 
-              <div class="card-product-infos">
-                <h2><%= link_to "#{booking.performance.title}", performance_path(booking.performance.id) %></h2>
-                <p><%= booking.performance.description %> </p>
-                <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p>
-              </div>
-              <div class="card-product-status text-center">
-                <% if booking.status == "payed" %>
-                  <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
-                    <%= f.hidden_field :status, value: "performed"%>
-                    <%= f.submit "Performed", class: "btn-profile-card btn btn-primary btn-sm" %>
-                  <% end %>
-                <% end %>
-                <% if booking.status == "waiting for payment" %>
-                  <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
-                    <%= f.hidden_field :status, value: "payed"%>
-                    <%= f.submit "Payed", class: "btn-profile-card btn btn-primary btn-sm" %>
-                  <% end %>
-                <% end %>
-                <% if booking.status == "on demand" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed"%>
-                  <p><strong><%= booking.status.capitalize %></strong></p>
-                <% end %>
-                <% if booking.status.split(' ')[0] != "cancelled" && booking.status != "performed" %>
-                  <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
-                    <%= f.hidden_field :status, value: "cancelled by user"%>
-                    <%= f.submit "Cancel", class: "btn-profile-card btn btn-danger btn-sm" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+          <%= render "card_my_bookings" %>
+          
+          <%= render "card_my_bookings_done" %>
         </div>
       </div>
     </div>
