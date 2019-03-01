@@ -10,7 +10,7 @@
         <p><strong>Date : </strong><%=booking.start.to_time.strftime('%d-%m-%y')%> at <%=booking.end.to_time.strftime('%d-%m-%y')%></p> 
       </div>
       <div class="card-product-status text-center">
-        <% if booking.status == "waiting for payment" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed"%>
+        <% if booking.status == "waiting for payment" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed" || booking.status == "payed"%>
           <p><strong><%= booking.status.capitalize %></strong></p>
         <% end %>
         <% if booking.status == "on demand" %>

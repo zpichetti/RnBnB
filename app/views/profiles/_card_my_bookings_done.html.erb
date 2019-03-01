@@ -12,13 +12,13 @@
         <% if booking.status == "payed" %>
           <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
             <%= f.hidden_field :status, value: "performed"%>
-            <%= f.submit "Performed", class: "btn-profile-card btn btn-primary btn-sm" %>
+            <%= f.submit "Performed ?", class: "btn-profile-card btn btn-primary btn-sm" %>
           <% end %>
         <% end %>
         <% if booking.status == "waiting for payment" %>
           <%= simple_form_for booking, :url => booking_path(booking.id), :method => :PATCH do |f| %>
             <%= f.hidden_field :status, value: "payed"%>
-            <%= f.submit "Payed", class: "btn-profile-card btn btn-primary btn-sm" %>
+            <%= f.submit "Checkout", class: "btn-profile-card btn btn-primary btn-sm" %>
           <% end %>
         <% end %>
         <% if booking.status == "on demand" || booking.status.split(' ')[0] == "cancelled" || booking.status == "performed"%>
