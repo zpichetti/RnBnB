@@ -19,14 +19,13 @@
             <a href="<%= performance_path(performance) %>" class="card-content-link"></a>
           </div>
           <div class="card-footer">
-          <% if performance.profile.avatar_url %>
-            <%= cl_image_tag(performance.profile.avatar_url, 
-                 :width => 50, :height => 50, 
-                 :crop => :thumb, :gravity => :face, :radius => 50, class:"card-footer-avatar") %>      
-          <% else %>        
-            <%= image_tag("avatar2.png", class:"card-footer-avatar") %> 
-          <%end%>
 
+            <% if performance.profile.avatar_url.url.nil? %>
+              <%= cl_image_tag('rl6iwmhwftzkbobduknm.png', class:"card-footer-avatar")%>
+            <% else %>
+              <%= cl_image_tag(performance.profile.avatar_url, class:"card-footer-avatar") %>
+            <% end %>
+               
             <div class="card-footer-middle">
               <h2><%= performance.profile.first_name %></h2>
               <p><%= performance.profile.address_city %></p>
