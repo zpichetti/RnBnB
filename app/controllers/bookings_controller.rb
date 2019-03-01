@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.performance = @performance
     @booking.profile = current_user.profile
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to profile_path(current_user.profile,"3")
     else
       p "Loose"
       render "/performances/#{@performance.id}"
@@ -29,7 +29,13 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    page = "1"
+    if @booking.status == "cancelled by user" || @booking.status == "payed" || @booking.status == "performed"
+      page = "3"
+    elsif @booking.status == "refused" || @booking.status == "waiting for payment" || @booking.status == "cancelled by performer"
+      page = "2"
+    end
+    redirect_to profile_path(current_user.profile, page)
   end
 
   private
