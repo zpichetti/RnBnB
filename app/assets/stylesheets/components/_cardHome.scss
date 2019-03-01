@@ -39,6 +39,7 @@
 }
 
 .card-footer {
+  position: relative;
   height: 80px;
   padding: 0px 20px;
   display: flex;
@@ -82,4 +83,11 @@
 }
 .card-content-link:hover{
   opacity: 0.2;
+}
+
+.card-footer-rate{
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  color:#e7a117;
 }
